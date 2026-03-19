@@ -1,4 +1,4 @@
-import streamlit st
+import streamlit as st
 import pandas as pd
 import joblib
 
@@ -43,17 +43,17 @@ st.title("🏦 Bank Insight AI")
 st.subheader("ระบบวิเคราะห์โอกาสการสมัครเงินฝากออมทรัพย์พิเศษ ✨")
 st.divider()
 
-# 4. ส่วนรับข้อมูล (เหลือแค่ 6 ช่องที่ต้องการ)
+# 4. ส่วนรับข้อมูล
 with st.container():
     st.markdown("### 💌 ข้อมูลลูกค้า")
     col1, col2 = st.columns(2)
-    
     with col1:
         age = st.number_input("อายุ (Age)", 18, 100, 30)
         income = st.number_input("รายได้ต่อปี (Annual Income)", value=50000)
-        balance = st.number_input("เงินในบัญชี (Account Balance)", value=1000)
-
+        credit_score = st.slider("คะแนนเครดิต (Credit Score)", 300, 850, 600)
+        campaign = st.number_input("จำนวนครั้งที่ติดต่อ (Contacts)", min_value=1, value=1)
     with col2:
+        balance = st.number_input("เงินในบัญชี (Account Balance)", value=1000)
         job_name = st.selectbox("อาชีพของคุณ", ['Management', 'Technician', 'Services', 'Retired', 'Admin.', 'Blue-collar', 'Unemployed', 'Entrepreneur', 'Housemaid', 'Self-employed', 'Student'])
         marital_name = st.selectbox("สถานภาพ", ["Single", "Married", "Divorced"])
         has_card = st.radio("มีบัตรเครดิตหรือไม่?", ["Yes", "No"], horizontal=True)
@@ -61,9 +61,8 @@ with st.container():
 # 5. ปุ่มวิเคราะห์
 if st.button("🚀 เริ่มการวิเคราะห์เชิงลึก"):
     try:
-        # กำหนดค่า Default สำหรับตัวที่ลบออกไป เพื่อให้โมเดลยังทำงานได้ (CreditScore=600, Contacts=1)
         input_data = pd.DataFrame([[
-            age, income, 600, balance, 1, 
+            age, income, credit_score, balance, campaign, 
             job_name, marital_name, has_card
         ]], columns=['Age', 'AnnualIncome', 'CreditScore', 'AccountBalance', 'NumContactsInCampaign', 
                      'JobTitle', 'MaritalStatus', 'HasCreditCard'])
