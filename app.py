@@ -50,8 +50,7 @@ with st.container():
     with col1:
         age = st.number_input("อายุ (Age)", 18, 100, 30)
         income = st.number_input("รายได้ต่อปี (Annual Income)", value=50000)
-        credit_score = st.slider("คะแนนเครดิต (Credit Score)", 300, 850, 600)
-        campaign = st.number_input("จำนวนครั้งที่ติดต่อ (Contacts)", min_value=1, value=1)
+        
     with col2:
         balance = st.number_input("เงินในบัญชี (Account Balance)", value=1000)
         job_name = st.selectbox("อาชีพของคุณ", ['Management', 'Technician', 'Services', 'Retired', 'Admin.', 'Blue-collar', 'Unemployed', 'Entrepreneur', 'Housemaid', 'Self-employed', 'Student'])
