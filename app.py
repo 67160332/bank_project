@@ -1,6 +1,14 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
+# เพิ่มบรรทัดนี้ชั่วคราวเพื่อดูว่าแอปเห็นไฟล์อะไรบ้าง
+st.write("ไฟล์ที่พบในระบบ:", os.listdir(".")) 
+
+try:
+    model = joblib.load('bank_model.pkl')
+except Exception as e:
+    st.error(f"❌ หาไฟล์ไม่เจอจริงๆ ค่ะ Error: {e}")
 
 
 # 1. ตั้งค่าหน้าเว็บและ Theme
