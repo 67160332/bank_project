@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
+st.write(os.listdir(".")) # บรรทัดนี้จะโชว์ชื่อไฟล์ทั้งหมดที่แอปมองเห็น
 
 # 1. ตั้งค่าหน้าเว็บและ Theme
 st.set_page_config(page_title="Bank Insight AI", layout="centered")
@@ -38,7 +40,7 @@ st.markdown("""
 # 2. โหลดโมเดล (ใช้ Cache เพื่อความเร็ว)
 @st.cache_resource
 def load_model():
-    return joblib.load('bank_model.pkl')
+    return joblib.load('bank_project/bank_model.pkl')
 
 try:
     model = load_model()
