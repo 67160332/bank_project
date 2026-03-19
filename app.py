@@ -43,6 +43,52 @@ st.title("🏦 Bank Insight AI")
 st.subheader("ระบบวิเคราะห์โอกาสการสมัครเงินฝากออมทรัพย์พิเศษ ✨")
 st.divider()
 
+# 4. ส่วนรับข้อมูล (เหลือ 6 ช่องตามสั่ง)
+with st.container():
+    st.markdown("### 💌 ข้อมูลลูกค้า")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        age = st.number_input("อายุ (Age)", 18, 100, 30)
+        income = st.number_input("รายได้ต่อปี (Annual Income)", value=50000)
+        balance = st.number_input("เงินในบัญชี (Account Balance)", value=1000)
+
+    with col2:
+        job_name = st.selectbox("อาชีพของคุณ", ['Management', 'Technician', 'Services', 'Retired', 'Admin.', 'Blue-collar', 'Unemployed', 'Entrepreneur', 'Housemaid', 'Self-employed', 'Student'])
+        marital_name = st.selectbox("สถานภาพ", ["Single", "Married", "Divorced"])
+        has_card = st.radio("มีบัตรเครดิตหรือไม่?", ["Yes", "No"], horizontal=True)
+
+# 5. ปุ่มวิเคราะห์
+if st.button("🚀 เริ่มการวิเคราะห์เชิงลึก"):
+    try:
+        # แก้ไขจุดนี้: ใส่ตัวเลข 600 และ 1 ลงไปตรงๆ แทนตัวแปรที่ลบออก
+        input_data = pd.DataFrame([[
+            age, income, 600, balance, 1, 
+            job_name, marital_name, has_card
+        ]], columns=['Age', 'AnnualIncome', 'CreditScore', 'AccountBalance', 'NumContactsInCampaign', 
+                     'JobTitle', 'MaritalStatus', 'HasCreditCard'])
+
+        prediction = model.predict(input_data)[0]
+        prob = model.predict_proba(input_data)[0]
+        
+        st.markdown("---")
+        if prediction == 1:
+            st.balloons()
+            st.markdown(f'<div class="result-card"><h2 style="color: #FF1493;">💖 ผลการวิเคราะห์: สมัคร</h2><p>ลูกค้ามีโอกาสสมัครสูงมาก (ความมั่นใจ {prob[1]:.2%})</p></div>', unsafe_allow_html=True)
+        else:
+            st.markdown(f'<div class="result-card"><h2 style="color: #A9A9A9;">❌ ผลการวิเคราะห์: ไม่สมัคร</h2><p>ลูกค้าอาจยังไม่สนใจ (ความมั่นใจ {prob[0]:.2%})</p></div>', unsafe_allow_html=True)
+    except Exception as e:
+        st.error(f"⚠️ เกิดข้อผิดพลาด: {e}")
+
+st.markdown("<br><hr><center><small style='color: #db7093;'>Powered by Gemini 3 Flash & Streamlit Cloud</small></center>", unsafe_allow_html=True)except:
+    st.error("❌ ไม่พบไฟล์โมเดล 'bank_model.pkl' กรุณาตรวจสอบบน GitHub")
+    st.stop()
+
+# 3. ส่วนหัวข้อ
+st.title("🏦 Bank Insight AI")
+st.subheader("ระบบวิเคราะห์โอกาสการสมัครเงินฝากออมทรัพย์พิเศษ ✨")
+st.divider()
+
 # 4. ส่วนรับข้อมูล
 with st.container():
     st.markdown("### 💌 ข้อมูลลูกค้า")
