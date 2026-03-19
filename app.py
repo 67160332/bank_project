@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 import os
-# เพิ่มบรรทัดนี้ชั่วคราวเพื่อดูว่าแอปเห็นไฟล์อะไรบ้าง
-st.write("ไฟล์ที่พบในระบบ:", os.listdir(".")) 
+st.write("ไฟล์ที่พบในระบบ:", os.listdir(".")) # ลบบรรทัดนี้ออก 
 
 try:
     model = joblib.load('bank_model.pkl')
