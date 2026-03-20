@@ -68,6 +68,7 @@ with st.container():
             'Housemaid': 'Housemaid (แม่บ้าน)',
             'Self-employed': 'Self-employed (ธุรกิจส่วนตัว)',
             'Student': 'Student (นักเรียน/นักศึกษา)'
+            'Others': 'Others (อื่นๆ)'
         }
         selected_job_label = st.selectbox("อาชีพของคุณ", list(job_options.values()))
         job_name = [k for k, v in job_options.items() if v == selected_job_label][0]
