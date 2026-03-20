@@ -51,11 +51,11 @@ with st.container():
     
     with col1:
         age = st.number_input("อายุ (Age)", 18, 100, 30)
-        income = st.number_input("รายได้ต่อปี (Annual Income)", value=50000)
+        # แก้ไข: เปลี่ยนจากใส่ตัวเลขเป็น Slider เพื่อเลือกช่วงรายได้ประมาณการ
+        income = st.slider("รายได้ต่อปีประมาณ (Annual Income)", 15000, 200000, 50000, step=5000)
         balance = st.number_input("เงินในบัญชี (Account Balance)", value=1000)
 
     with col2:
-        # พลอยทำ Dictionary สำหรับคำแปลอาชีพค่ะ
         job_options = {
             'Management': 'Management (บริหาร)',
             'Technician': 'Technician (ช่างเทคนิค)',
@@ -70,17 +70,14 @@ with st.container():
             'Student': 'Student (นักเรียน/นักศึกษา)'
         }
         selected_job_label = st.selectbox("อาชีพของคุณ", list(job_options.values()))
-        # ดึง Key ภาษาอังกฤษกลับมาเพื่อส่งให้โมเดล
         job_name = [k for k, v in job_options.items() if v == selected_job_label][0]
 
-        # ทำคำแปลสำหรับสถานภาพค่ะ
         marital_options = {
             'Single': 'Single (โสด)',
             'Married': 'Married (แต่งงานแล้ว)',
             'Divorced': 'Divorced (หย่าร้าง/ม่าย)'
         }
         selected_marital_label = st.selectbox("สถานภาพ", list(marital_options.values()))
-        # ดึง Key ภาษาอังกฤษกลับมาเพื่อส่งให้โมเดล
         marital_name = [k for k, v in marital_options.items() if v == selected_marital_label][0]
 
         has_card = st.radio("มีบัตรเครดิตหรือไม่?", ["Yes", "No"], horizontal=True)
