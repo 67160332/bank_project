@@ -57,18 +57,18 @@ with st.container():
 
     with col2:
         job_options = {
-            'Management': 'Management (บริหาร)',
-            'Technician': 'Technician (ช่างเทคนิค)',
-            'Services': 'Services (บริการ)',
-            'Retired': 'Retired (เกษียณ)',
-            'Admin.': 'Admin. (ธุรการ)',
-            'Blue-collar': 'Blue-collar (พนักงานฝ่ายผลิต)',
+           'Management': 'Management (นักบริหาร/เจ้าหน้าที่ระดับสูง)',
+            'Technician': 'Technician (ช่างเทคนิค/ผู้เชี่ยวชาญ)',
+            'Services': 'Services (งานบริการ/พนักงานขาย)',
+            'Retired': 'Retired (เกษียณอายุ)',
+            'Admin.': 'Admin. (งานธุรการ/เสมียน)',
+            'Blue-collar': 'Blue-collar (พนักงานฝ่ายผลิต/ผู้ใช้แรงงาน)',
+            'Entrepreneur': 'Entrepreneur (เจ้าของกิจการ/ผู้ประกอบการ)',
+            'Self-employed': 'Self-employed (อาชีพอิสระ/ธุรกิจส่วนตัว)',
+            'Housemaid': 'Housemaid (พ่อบ้าน/แม่บ้าน)',
+            'Student': 'Student (นักเรียน/นักศึกษา)',
             'Unemployed': 'Unemployed (ว่างงาน)',
-            'Entrepreneur': 'Entrepreneur (ผู้ประกอบการ)',
-            'Housemaid': 'Housemaid (แม่บ้าน)',
-            'Self-employed': 'Self-employed (ธุรกิจส่วนตัว)',
-            'Student': 'Student (นักเรียน/นักศึกษา)'
-            'Others': 'Others (อื่นๆ)'
+            'Other': 'Other (อาชีพอื่นๆ/ไม่ระบุ)'
         }
         selected_job_label = st.selectbox("อาชีพของคุณ", list(job_options.values()))
         job_name = [k for k, v in job_options.items() if v == selected_job_label][0]
