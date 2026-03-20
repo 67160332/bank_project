@@ -51,26 +51,36 @@ with st.container():
     
     with col1:
         age = st.number_input("อายุ (Age)", 18, 100, 30)
-        # แก้ไข: เปลี่ยนจากใส่ตัวเลขเป็น Slider เพื่อเลือกช่วงรายได้ประมาณการ
-        income = st.slider("รายได้ต่อปีประมาณ (Annual Income)", 15000, 200000, 50000, step=5000)
-        balance = st.number_input("เงินในบัญชี (Account Balance)", value=1000)
+        
+        # --- เปลี่ยนเป็น Dropdown (Selectbox) แบบที่เว็บทางการใช้กัน ---
+        income_options = {
+            "น้อยกว่า 30,000 บาท": 20000,
+            "30,000 - 60,000 บาท": 45000,
+            "60,001 - 90,000 บาท": 75000,
+            "90,001 - 120,000 บาท": 105000,
+            "มากกว่า 120,000 บาท": 150000
+        }
+        selected_income_label = st.selectbox("ช่วงรายได้ต่อปีประมาณ (Annual Income)", list(income_options.keys()))
+        income = income_options[selected_income_label]
+        
+        balance = st.number_input("เงินในบัญชีปัจจุบัน (Account Balance)", value=1000)
 
     with col2:
         job_options = {
-           'Management': 'Management (นักบริหาร/เจ้าหน้าที่ระดับสูง)',
+            'Management': 'Management (นักบริหาร/เจ้าหน้าที่ระดับสูง)',
             'Technician': 'Technician (ช่างเทคนิค/ผู้เชี่ยวชาญ)',
             'Services': 'Services (งานบริการ/พนักงานขาย)',
             'Retired': 'Retired (เกษียณอายุ)',
-            'Admin.': 'Admin. (งานธุรการ/เสมียน)',
-            'Blue-collar': 'Blue-collar (พนักงานฝ่ายผลิต/ผู้ใช้แรงงาน)',
-            'Entrepreneur': 'Entrepreneur (เจ้าของกิจการ/ผู้ประกอบการ)',
-            'Self-employed': 'Self-employed (อาชีพอิสระ/ธุรกิจส่วนตัว)',
-            'Housemaid': 'Housemaid (พ่อบ้าน/แม่บ้าน)',
+            'Admin.': 'Admin. (ธุรการ/เสมียน)',
+            'Blue-collar': 'Blue-collar (พนักงานฝ่ายผลิต/แรงงาน)',
+            'Entrepreneur': 'Entrepreneur (เจ้าของกิจการ)',
+            'Self-employed': 'Self-employed (ธุรกิจส่วนตัว)',
+            'Housemaid': 'Housemaid (งานบ้าน)',
             'Student': 'Student (นักเรียน/นักศึกษา)',
             'Unemployed': 'Unemployed (ว่างงาน)',
-            'Other': 'Other (อาชีพอื่นๆ/ไม่ระบุ)'
+            'Other': 'Other (อาชีพอื่นๆ)'
         }
-        selected_job_label = st.selectbox("อาชีพของคุณ", list(job_options.values()))
+        selected_job_label = st.selectbox("อาชีพ", list(job_options.values()))
         job_name = [k for k, v in job_options.items() if v == selected_job_label][0]
 
         marital_options = {
